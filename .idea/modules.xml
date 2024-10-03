@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/UGCC.iml" filepath="$PROJECT_DIR$/.idea/UGCC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../nodePra/.idea/nodePra.iml" filepath="$PROJECT_DIR$/../nodePra/.idea/nodePra.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../paozhang/.idea/paozhang.iml" filepath="$PROJECT_DIR$/../paozhang/.idea/paozhang.iml" />
+    </modules>
+  </component>
+</project>
