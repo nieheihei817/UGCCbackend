@@ -126,26 +126,32 @@ function verifyToken(token) {
 }
 router.post("/api/verifyToken",(req,res)=>{
     const token = verifyToken(req.body.token)
-    console.log("过期时间"+token.tokenDate)
-    UserModel.findOne({_id:token.uid}).then((userData)=>{
+    console.log("过期时间"+token.tokenDate+"当前时间"+Date.now()+1000)
+    if(token.tokenDate < Date.now()+1000){
         res.json({
-            code:200,
-            state:"success",
-            userData:{
-                uid:userData._id,
-                username:userData.username,
-                permissions:userData.permissions,
-                permissionDes:userData.permissionDes,
-                avatar:userData.avatar
-            }
+            code:403
         })
-    }).catch(err => {
-        console.error('Error:', err);
-        res.status(500).json({
-            code:403,
-            "state": "noData"
+    }else{
+        UserModel.findOne({_id:token.uid}).then((userData)=>{
+            res.json({
+                code:200,
+                state:"success",
+                userData:{
+                    uid:userData._id,
+                    username:userData.username,
+                    permissions:userData.permissions,
+                    permissionDes:userData.permissionDes,
+                    avatar:userData.avatar
+                }
+            })
+        }).catch(err => {
+            console.error('Error:', err);
+            res.status(500).json({
+                code:403,
+                "state": "noData"
+            });
         });
-    });
+    }
 })
 router.post("/api/webSiteLog",(req,res)=>{
 	try {
